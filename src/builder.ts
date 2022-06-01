@@ -19,3 +19,5 @@ class Builder {
         return this.container;
    }
 }
+
+export default Builder;
