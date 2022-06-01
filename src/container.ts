@@ -3,7 +3,7 @@
 import { Element } from "./types";
 
 
-class Container {
+export default class Container {
     private elements: [Element?];
 
     constructor() {
@@ -18,4 +18,3 @@ class Container {
     }
 }
 
-export default Container;

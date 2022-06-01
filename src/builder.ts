@@ -2,7 +2,7 @@
 import { Element } from './types';
 import Container from './container';
 
-class Builder {
+export default class Builder {
     private container: Container;
 
     constructor () {
@@ -19,5 +19,3 @@ class Builder {
         return this.container;
    }
 }
-
-export default Builder;
