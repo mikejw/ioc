@@ -1,12 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const container_1 = __importDefault(require("./container"));
+exports.Builder = void 0;
+const container_1 = require("./container");
 class Builder {
     constructor() {
-        this.container = new container_1.default;
+        this.container = new container_1.Container;
     }
     addDefinitions(toAdd) {
         toAdd.forEach((item) => {
@@ -17,4 +15,4 @@ class Builder {
         return this.container;
     }
 }
-exports.default = Builder;
+exports.Builder = Builder;

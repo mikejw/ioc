@@ -1,8 +1,8 @@
 
 import { Element } from './types';
-import Container from './container';
+import { Container } from './container';
 
-export default class Builder {
+export class Builder {
     private container: Container;
 
     constructor () {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Container = void 0;
 class Container {
     constructor() {
         this.elements = [];
@@ -11,4 +12,4 @@ class Container {
         console.log(JSON.stringify(this.elements));
     }
 }
-exports.default = Container;
+exports.Container = Container;
