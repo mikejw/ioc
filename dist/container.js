@@ -22,8 +22,13 @@ class Container {
             return el.value;
         }
     }
-    dump() {
-        console.log(JSON.stringify(this.elements, null, 2));
+    dump(identifier) {
+        if (typeof identifier !== 'undefined') {
+            return (JSON.stringify(this.get(identifier), null, 2));
+        }
+        else {
+            return (JSON.stringify(this.elements, null, 2));
+        }
     }
 }
 exports.Container = Container;

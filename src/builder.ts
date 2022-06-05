@@ -10,7 +10,7 @@ export class Builder {
         this.container = new Container;
     }
 
-    addDefinitions(toAdd: [ElementFlat]) {
+    addDefinitions(toAdd: ElementFlat[]) {
         toAdd.forEach((item: ElementFlat) => {
             const el = new Element(item.identifier, item.value);
             let container = this.container;

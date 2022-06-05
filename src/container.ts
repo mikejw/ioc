@@ -1,5 +1,4 @@
 
-
 import { Element } from './element';
 
 
@@ -28,8 +27,12 @@ export class Container {
         }
     }
 
-    dump() {
-        console.log(JSON.stringify(this.elements, null, 2));
+    dump(identifier?: string) {
+        if (typeof identifier !== 'undefined') {
+            return(JSON.stringify(this.get(identifier), null, 2));
+        } else {
+            return(JSON.stringify(this.elements, null, 2));
+        }
     }
 }
 
