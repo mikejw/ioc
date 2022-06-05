@@ -1,6 +1,5 @@
 
-
-export type Element = {
-    identifer: string,
+export type ElementFlat = {
+    identifier: string,
     value: any
 };

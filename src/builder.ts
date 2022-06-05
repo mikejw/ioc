@@ -1,5 +1,6 @@
 
-import { Element } from './types';
+import { Element } from './element';
+import { ElementFlat } from './types';
 import { Container } from './container';
 
 export class Builder {
@@ -9,9 +10,20 @@ export class Builder {
         this.container = new Container;
     }
 
-    addDefinitions(toAdd: [Element]) {
-        toAdd.forEach((item: Element) => {
-            this.container.add(item);
+    addDefinitions(toAdd: [ElementFlat]) {
+        toAdd.forEach((item: ElementFlat) => {
+            const el = new Element(item.identifier, item.value);
+            let container = this.container;
+            const handler = {
+                get(el: Element, prop: keyof Element) {
+                    if (typeof el[prop] === 'function') {
+                        return el[prop](container);
+                    } else {
+                        return el[prop];
+                    }
+                }
+            };
+            this.container.add(new Proxy(el, handler));
         });
     }
 
