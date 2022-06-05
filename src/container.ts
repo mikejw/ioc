@@ -9,7 +9,14 @@ export class Container {
         this.elements = [];
     }
     add(element: Element) {
-        this.elements.push(element);
+        const el = this.elements.find((item => {
+            return item !== null && item.identifier === element.identifier;
+        }))
+        if (typeof el !== 'undefined') {
+            throw new Error(`Duplicate identifier ${element.identifier} used`);
+        } else {
+            this.elements.push(element);
+        }
     }
 
     getElementCount(): number {
@@ -17,7 +24,7 @@ export class Container {
     }
 
     get(identifier: string) {
-        let el = this.elements.find((item => {
+        const el = this.elements.find((item => {
             return item !== null && item.identifier === identifier;
         }))
         if (typeof el === 'undefined') {
