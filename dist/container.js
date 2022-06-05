@@ -23,7 +23,7 @@ class Container {
         }
     }
     dump() {
-        console.log(JSON.stringify(this.elements));
+        console.log(JSON.stringify(this.elements, null, 2));
     }
 }
 exports.Container = Container;
