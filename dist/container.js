@@ -5,16 +5,25 @@ class Container {
     constructor() {
         this.elements = [];
     }
+    find(identifier) {
+        return this.elements.find((item => {
+            return item !== null && item.identifier === identifier;
+        }));
+    }
     add(element) {
-        this.elements.push(element);
+        const el = this.find(element.identifier);
+        if (typeof el !== 'undefined') {
+            throw new Error(`Duplicate identifier ${element.identifier} used`);
+        }
+        else {
+            this.elements.push(element);
+        }
     }
     getElementCount() {
         return this.elements.length;
     }
     get(identifier) {
-        let el = this.elements.find((item => {
-            return item !== null && item.identifier === identifier;
-        }));
+        const el = this.find(identifier);
         if (typeof el === 'undefined') {
             throw new Error(`Could not find element by identifier ${identifier}`);
         }

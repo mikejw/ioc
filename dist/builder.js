@@ -10,7 +10,7 @@ class Builder {
     addDefinitions(toAdd) {
         toAdd.forEach((item) => {
             const el = new element_1.Element(item.identifier, item.value);
-            let container = this.container;
+            const container = this.container;
             const handler = {
                 get(el, prop) {
                     if (typeof el[prop] === 'function') {

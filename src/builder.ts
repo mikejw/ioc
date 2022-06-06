@@ -13,7 +13,7 @@ export class Builder {
     addDefinitions(toAdd: ElementFlat[]) {
         toAdd.forEach((item: ElementFlat) => {
             const el = new Element(item.identifier, item.value);
-            let container = this.container;
+            const container = this.container;
             const handler = {
                 get(el: Element, prop: keyof Element) {
                     if (typeof el[prop] === 'function') {

@@ -8,10 +8,15 @@ export class Container {
     constructor() {
         this.elements = [];
     }
-    add(element: Element) {
-        const el = this.elements.find((item => {
-            return item !== null && item.identifier === element.identifier;
+
+    find(identifier: string) {
+        return this.elements.find((item => {
+            return item !== null && item.identifier === identifier;
         }))
+    }
+
+    add(element: Element) {
+        const el = this.find(element.identifier);
         if (typeof el !== 'undefined') {
             throw new Error(`Duplicate identifier ${element.identifier} used`);
         } else {
@@ -24,9 +29,7 @@ export class Container {
     }
 
     get(identifier: string) {
-        const el = this.elements.find((item => {
-            return item !== null && item.identifier === identifier;
-        }))
+        const el = this.find(identifier);
         if (typeof el === 'undefined') {
             throw new Error(`Could not find element by identifier ${identifier}`);
         } else {
