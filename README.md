@@ -36,9 +36,9 @@
         }
     ];
 
-    const b = new Builder();
-    b.addDefinitions(items);
-    const container = b.getContainer();
+    const builder = new Builder();
+    builder.addDefinitions(items);
+    const container = builder.getContainer();
     const entity = container.get('Entity');
 
 
