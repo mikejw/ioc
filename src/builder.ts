@@ -6,8 +6,8 @@ import { Container } from './container';
 export class Builder {
     private container: Container;
 
-    constructor () {
-        this.container = new Container;
+    constructor (noIdempotent?: boolean) {
+        this.container = new Container(!!noIdempotent);
     }
 
     addDefinitions(toAdd: ElementFlat[]) {
@@ -17,7 +17,16 @@ export class Builder {
             const handler = {
                 get(el: Element, prop: keyof Element) {
                     if (typeof el[prop] === 'function') {
-                        return el[prop](container);
+                        if (el.getInstance() === null) {
+                            const instance = el[prop](container);
+                            if (container.getIdempotent()) {
+                                el.setInstance(instance);
+                            }
+                            return instance;
+                        } else {
+                            return el.getInstance();
+                        }
+
                     } else {
                         return el[prop];
                     }

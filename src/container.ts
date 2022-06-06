@@ -4,9 +4,11 @@ import { Element } from './element';
 
 export class Container {
     private elements: Element[];
+    private noIdempotency: boolean;
 
-    constructor() {
+    constructor(noIdempotency?: boolean) {
         this.elements = [];
+        this.noIdempotency = !!noIdempotency;
     }
 
     find(identifier: string) {
@@ -37,11 +39,15 @@ export class Container {
         }
     }
 
+    getIdempotent() {
+        return !this.noIdempotency;
+    }
+
     dump(identifier?: string) {
         if (typeof identifier !== 'undefined') {
             return(JSON.stringify(this.get(identifier), null, 2));
         } else {
-            return(JSON.stringify(this.elements, null, 2));
+            return(JSON.stringify(this.elements.map(item => ({ identifier: item.identifier, value: item.value })), null, 2));
         }
     }
 }

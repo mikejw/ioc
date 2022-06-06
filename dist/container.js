@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Container = void 0;
 class Container {
-    constructor() {
+    constructor(noIdempotency) {
         this.elements = [];
+        this.noIdempotency = !!noIdempotency;
     }
     find(identifier) {
         return this.elements.find((item => {
@@ -31,12 +32,15 @@ class Container {
             return el.value;
         }
     }
+    getIdempotent() {
+        return !this.noIdempotency;
+    }
     dump(identifier) {
         if (typeof identifier !== 'undefined') {
             return (JSON.stringify(this.get(identifier), null, 2));
         }
         else {
-            return (JSON.stringify(this.elements, null, 2));
+            return (JSON.stringify(this.elements.map(item => ({ identifier: item.identifier, value: item.value })), null, 2));
         }
     }
 }

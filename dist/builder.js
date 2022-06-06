@@ -4,8 +4,8 @@ exports.Builder = void 0;
 const element_1 = require("./element");
 const container_1 = require("./container");
 class Builder {
-    constructor() {
-        this.container = new container_1.Container;
+    constructor(noIdempotent) {
+        this.container = new container_1.Container(!!noIdempotent);
     }
     addDefinitions(toAdd) {
         toAdd.forEach((item) => {
@@ -14,7 +14,16 @@ class Builder {
             const handler = {
                 get(el, prop) {
                     if (typeof el[prop] === 'function') {
-                        return el[prop](container);
+                        if (el.getInstance() === null) {
+                            const instance = el[prop](container);
+                            if (container.getIdempotent()) {
+                                el.setInstance(instance);
+                            }
+                            return instance;
+                        }
+                        else {
+                            return el.getInstance();
+                        }
                     }
                     else {
                         return el[prop];

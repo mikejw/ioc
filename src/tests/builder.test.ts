@@ -2,6 +2,7 @@ import { Builder } from '../builder';
 import { ElementFlat} from '../types';
 import { DBConnection } from './db-connection';
 import { Container } from '../container';
+import { Counter } from './counter';
 
 describe("test add simple definitions", () => {
     it("should return simple expected output", () => {
@@ -82,4 +83,40 @@ describe("test add simple definitions", () => {
         const conn = container.get('DBConnection');
         expect(conn.constructor.name).toBe('DBConnection');
     });
+
+    it("should return lazy loaded non-idempotent object", () => {
+        const items = [
+            {
+                identifier: "Counter",
+                value: (c: Container) => {
+                    return new Counter();
+                }
+            }
+        ];
+
+        const b = new Builder(true);
+        b.addDefinitions(items as ElementFlat[]);
+        const container = b.getContainer();
+        container.get('Counter').getCount();
+        container.get('Counter').getCount();
+        expect(container.get('Counter').getCount()).toBe(1);
+    });
+
+    it("should return lazy loaded idempotent object", () => {
+        const items = [
+            {
+                identifier: "Counter",
+                value: (c: Container) => {
+                    return new Counter();
+                }
+            }
+        ];
+        const b = new Builder();
+        b.addDefinitions(items as ElementFlat[]);
+        const container = b.getContainer();
+        container.get('Counter').getCount();
+        container.get('Counter').getCount();
+        expect(container.get('Counter').getCount()).toBe(3);
+    });
+
 });
