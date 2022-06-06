@@ -24,20 +24,20 @@
         },
         {
             identifier: 'DBConnection',
-            value: (c: Container) => { // type not required in ES2016
+            value: (c) => { 
                 return new DBConnection(c.get('db_host'), c.get('db_user'), c.get('db_pass'))
             }
         },
         {
             identifier: 'Entity',
-            value: (c: Container) => { // type not required in ES2016
+            value: (c) => {
                 return new Entity(c.get('DBConnection'))
             }
         }
     ];
 
     const b = new Builder();
-    b.addDefinitions(items as ElementFlat[]); // type coercion not required in ES2016
+    b.addDefinitions(items);
     const container = b.getContainer();
     const entity = container.get('Entity');
 
