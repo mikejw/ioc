@@ -25,7 +25,7 @@ describe("test add simple definitions", () => {
             }
         ];
         const b = new Builder();
-        b.addDefinitions(items as ElementFlat[]); // type coercion not required in ES2016
+        b.addDefinitions(items as ElementFlat[]);
         const container = b.getContainer();
         expect(container.dump()).toBe(JSON.stringify(items, null, 2));
     });
@@ -41,7 +41,7 @@ describe("test add simple definitions", () => {
         ];
 
         const b = new Builder();
-        b.addDefinitions(items as ElementFlat[]); // type coercion not required in ES2016
+        b.addDefinitions(items as ElementFlat[]);
         const container = b.getContainer();
         expect(container.get('magicNumber')).toBe(1);
     });
@@ -75,7 +75,7 @@ describe("test add simple definitions", () => {
         };
 
         const b = new Builder();
-        b.addDefinitions(items as ElementFlat[]); // type coercion not required in ES2016
+        b.addDefinitions(items as ElementFlat[]);
         const container = b.getContainer();
         expect(container.dump('DBConnection')).toBe(JSON.stringify(expectedOutput, null, 2));
 

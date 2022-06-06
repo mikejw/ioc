@@ -8,7 +8,7 @@ describe("invalid get", () => {
         b.addDefinitions([{
             identifier: "Foo",
             value: "foo"
-        }] as ElementFlat[]); // type coercion not required in ES2016
+        }] as ElementFlat[]);
         const container = b.getContainer();
         expect(() => {
             container.get('Fooz');
