@@ -4,7 +4,7 @@ import { ElementFlat } from './types';
 import { Builder } from './builder';
 
 export class Factory {
-    static instance: Container | null = null;
+    private static instance: Container | null = null;
 
     static getContainer(toAdd?: ElementFlat[], noIdempotent?: boolean): Container {
         if (this.instance === null) {
