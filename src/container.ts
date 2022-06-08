@@ -1,14 +1,16 @@
 
 import { Element } from './element';
-
+import { Builder } from './builder';
 
 export class Container {
     private elements: Element[];
     private noIdempotency: boolean;
+    private builder: Builder;
 
-    constructor(noIdempotency?: boolean) {
+    constructor(builder: Builder, noIdempotency?: boolean) {
         this.elements = [];
         this.noIdempotency = !!noIdempotency;
+        this.builder = builder;
     }
 
     find(identifier: string) {
@@ -41,6 +43,10 @@ export class Container {
 
     getIdempotent() {
         return !this.noIdempotency;
+    }
+
+    getBuilder() {
+        return this.builder;
     }
 
     dump(identifier?: string) {

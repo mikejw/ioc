@@ -5,7 +5,7 @@ const element_1 = require("./element");
 const container_1 = require("./container");
 class Builder {
     constructor(noIdempotent) {
-        this.container = new container_1.Container(!!noIdempotent);
+        this.container = new container_1.Container(this, !!noIdempotent);
     }
     addDefinitions(toAdd) {
         toAdd.forEach((item) => {
@@ -16,7 +16,7 @@ class Builder {
                     if (typeof el[prop] === 'function') {
                         if (el.getInstance() === null) {
                             const instance = el[prop](container);
-                            if (container.getIdempotent()) {
+                            if (container.getIdempotent() && typeof (instance) === 'object') {
                                 el.setInstance(instance);
                             }
                             return instance;

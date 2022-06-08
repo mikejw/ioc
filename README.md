@@ -1,7 +1,7 @@
 
 #IOC Library
 
-###Example Usage
+##Example Usage
 
     import { Builder } from 'ioc/dist/builder.js';
     import { ElementFlat} from 'ioc/dist/types.js';
@@ -41,5 +41,23 @@
     const container = builder.getContainer();
     const entity = container.get('Entity');
 
+##Alternatively with Static Factory
+
+    ...
+    import { Factory as IOCFactory } from 'ioc/dist/factory.js';
+
+    const items = [
+        ...
+    ];
+
+    // stores container singleton
+    let container = IOCFactory.getContainer(items); 
+
+    // called later on in your code
+    container = IOCFactory.getContainer(); 
+
+    // add additional items to container
+    container = IOCFactory.getContainer([ ... ]); 
+    
 
 
