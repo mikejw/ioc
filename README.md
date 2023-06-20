@@ -3,7 +3,7 @@ IOC Library
 ===
 Inversion of control library for JavaScript/TypeScript.
 
-Heavily inspired by [PHP-DI](https://php-di.org/).
+Developer API inspired by [PHP-DI](https://php-di.org/).
 
 License info, please see [LICENSE.md](./LICENSE.md).
 
