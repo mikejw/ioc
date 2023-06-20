@@ -1,7 +1,14 @@
 
-#IOC Library
+IOC Library
+===
+Inversion of control library for JavaScript/TypeScript.
 
-##Example Usage
+Heavily inspired by [PHP-DI](https://php-di.org/).
+
+License info, please see [LICENSE.md](./LICENSE.md).
+
+Example Usage:
+----
 
     import { Builder } from 'ioc/dist/builder.js';
     import { ElementFlat} from 'ioc/dist/types.js';
@@ -41,7 +48,8 @@
     const container = builder.getContainer();
     const entity = container.get('Entity');
 
-##Alternatively with Static Factory
+Alternatively with Static Factory:
+---
 
     ...
     import { Factory as IOCFactory } from 'ioc/dist/factory.js';
